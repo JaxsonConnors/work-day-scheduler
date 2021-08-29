@@ -6,7 +6,11 @@ var containerEl = document.getElementById('containerId');
 
 
 var saveTasks = function() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem(".tasks", JSON.stringify(tasks));
+  };
+
+  var loadTasks = function() {
+    tasks = JSON.parse(localStorage.getItem(".tasks"));
   };
 
 /*
@@ -32,11 +36,8 @@ var createTask = function(taskText, taskDate, taskList) {
 */
 
 
-
-
-
 // task text was clicked
-$(".tasks").on("click", function(event) {
+$("section").on("click", "p.tasks", function(event) {
     event.stopPropagation;
     event.stopImmediatePropagation;
 
@@ -46,28 +47,21 @@ $(".tasks").on("click", function(event) {
     .trim();
 
   // replace p element with a new textarea
-  var textInput = $("<textarea>").addClass("tasks").val(text);
+  var textInput = $("<textarea>").addClass("col-sm-10 tasks").val(text);
   $(this).replaceWith(textInput);
 });
 
-$(".tasks").on("focusout", function(event) {
+$("section").on("focusout", "textarea.tasks", function() {
 console.log("josh is gei");
   // get current text of p element
   var text = $(this)
-    .text()
+    .val()
     .trim();
 
   // replace p element with a new textarea
-  var textInput = $("<p>").addClass("tasks").val(text);
+  var textInput = $("<p>").addClass("col-sm-10 tasks").text(text);
   $(this).replaceWith(textInput);
 });
-
-
-
-
-
-
-
 
 
 const today = moment();
@@ -75,4 +69,5 @@ const today = moment();
 currentDayEl.textContent = today.format('dddd MMMM Do, YYYY');
 CurrentDay.appendChild(currentDayEl);
 
-saveTasks();
+moment().hour();
+console.log(moment().hour());

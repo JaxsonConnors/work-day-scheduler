@@ -44,7 +44,6 @@ body {
   }
 
   .tasks {
-    background-color: #e1f7e5;
     min-height: 75px;
     text-align: left;
   }
@@ -70,7 +69,6 @@ body {
     border-bottom-right-radius: 15px;
     background-color: #06AED5;
     color: white;
-    margin-bottom: 15px;
   }
   
   .saveBtn i:hover {
