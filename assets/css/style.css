@@ -39,7 +39,14 @@ body {
   .hour {
     background-color: #ffffff;
     color: #000000;
-    border-top: 1px dashed #000000;
+    border-top: 1px solid #000000;
+    border-right: 2px dotted #000000;
+  }
+
+  #tasks {
+    background-color: #e1f7e5;
+    min-height: 75px;
+    text-align: left;
   }
   
   .past {
@@ -63,6 +70,7 @@ body {
     border-bottom-right-radius: 15px;
     background-color: #06AED5;
     color: white;
+    margin-bottom: 15px;
   }
   
   .saveBtn i:hover {
