@@ -35,31 +35,26 @@ var createTask = function(taskText, taskDate, taskList) {
 };
 */
 
-
-// task text was clicked
 $("section").on("click", "p.tasks", function(event) {
     event.stopPropagation;
     event.stopImmediatePropagation;
+    let classes = $(this).attr('class');
 
-  // get current text of p element
   var text = $(this)
     .text()
     .trim();
 
-  // replace p element with a new textarea
-  var textInput = $("<textarea>").addClass("col-sm-10 tasks").val(text);
+  var textInput = $("<textarea>").addClass(classes).val(text);
   $(this).replaceWith(textInput);
 });
 
 $("section").on("focusout", "textarea.tasks", function() {
-console.log("josh is gei");
-  // get current text of p element
+    let classes = $(this).attr('class');
   var text = $(this)
     .val()
     .trim();
 
-  // replace p element with a new textarea
-  var textInput = $("<p>").addClass("col-sm-10 tasks").text(text);
+  var textInput = $("<p>").addClass(classes).text(text);
   $(this).replaceWith(textInput);
 });
 
@@ -69,5 +64,29 @@ const today = moment();
 currentDayEl.textContent = today.format('dddd MMMM Do, YYYY');
 CurrentDay.appendChild(currentDayEl);
 
-moment().hour();
-console.log(moment().hour());
+var now = moment().hour();
+var timeBlocks = $(".time-block").children()
+
+for (i = 0; i < timeBlocks.length; ++i) {
+  var block = $(timeBlocks[i]).children()
+  var time = block[0].innerHTML
+
+  if (time.includes('AM')) {
+    time = time.replace('AM', '')
+    time = parseInt(time)
+  } else if (time.includes('12PM')) {
+    time = 12
+  } else {
+    time = time.replace('PM', '')
+    time = parseInt(time)
+    time += 12
+  }
+
+  if (time < now) {
+    $(block[1]).addClass('past')
+  } else if (time === now) {
+    $(block[1]).addClass('present')
+  } else {
+    $(block[1]).addClass('future')
+  }
+}
