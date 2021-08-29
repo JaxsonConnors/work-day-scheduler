@@ -31,26 +31,48 @@ var createTask = function(taskText, taskDate, taskList) {
 };
 */
 
+
+
+
+
 // task text was clicked
-$("tasks").on("click", "p", function() {
-    console.log("Hi");
+$(".tasks").on("click", function(event) {
+    event.stopPropagation;
+    event.stopImmediatePropagation;
+
   // get current text of p element
   var text = $(this)
     .text()
     .trim();
 
   // replace p element with a new textarea
-  var textInput = $("<textarea>").addClass("form-control").val(text);
+  var textInput = $("<textarea>").addClass("tasks").val(text);
   $(this).replaceWith(textInput);
-
-  // auto focus new element
-  textInput.trigger("focus");
 });
 
-const today = moment();
-console.log(today.format('MMM Do, YYYY'));
+$(".tasks").on("focusout", function(event) {
+console.log("josh is gei");
+  // get current text of p element
+  var text = $(this)
+    .text()
+    .trim();
 
-currentDayEl.textContent = today.format('MMM Do, YYYY');
+  // replace p element with a new textarea
+  var textInput = $("<p>").addClass("tasks").val(text);
+  $(this).replaceWith(textInput);
+});
+
+
+
+
+
+
+
+
+
+const today = moment();
+
+currentDayEl.textContent = today.format('dddd MMMM Do, YYYY');
 CurrentDay.appendChild(currentDayEl);
 
 saveTasks();

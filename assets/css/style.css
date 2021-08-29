@@ -43,7 +43,7 @@ body {
     border-right: 2px dotted #000000;
   }
 
-  #tasks {
+  .tasks {
     background-color: #e1f7e5;
     min-height: 75px;
     text-align: left;
